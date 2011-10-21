@@ -1,0 +1,38 @@
+﻿@model MvcContrib.Samples.UI.Models.DerivedTypeModelBinder.AddressInfo
+@using MvcContrib.UI.DerivedTypeModelBinder
+@Html.TypeStamp()
+<h3>Address Information</h3>
+<table>
+    <tr>
+        <td>
+            Address
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.Address)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            City
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.City)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            State
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.State)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Postal Code
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.PostalCode)
+        </td>
+    </tr>
+</table>

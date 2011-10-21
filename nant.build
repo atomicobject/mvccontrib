@@ -1,0 +1,397 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project name="MVCContrib" default="build" xmlns="http://nant.sf.net/release/0.91-alpha1/nant.xsd">
+	<property name="solution.dir" value="src"/>
+	<property name="solution.file" value="${solution.dir}/MVCContrib.sln"/>
+	<property name="trunk.dir" value="."/>
+	<property name="company.name" value="MVC Contrib"/>
+	<property name="bin.dir" value="bin" />
+	<property name="build.base" value="build"/>
+	<property name="results.dir" value="${build.base}\results" />
+	<property name="samples.dir" value="src\samples"/>
+	<property name="project.fullversion" value="3.0.0.99" />
+	<property name="project.fullversion" value="${environment::get-variable('BUILD_NUMBER')}" if="${environment::variable-exists('BUILD_NUMBER')}"/>
+	<!--
+		<property name="revisionnumber" value="0" dynamic="true"/>
+		<property name="project.fullversion" value="1.0.${revisionnumber}.0" dynamic="true"/>
+		<property name="version.major" value="1"/>
+		<property name="version.minor" value="0"/>
+		<property name="version.build" value="0"/>
+		<property name="version.revision" value="0"/>
+		<property name="project.fullversion" value="${version.major}.${version.minor}.${version.build}.${version.revision}" dynamic="true" />
+	-->
+	<property name="nant.settings.currentframework" value="net-4.0" />
+	<property name="msbuild.path" value="${framework::get-framework-directory(framework::get-target-framework())}\msbuild.exe" />
+	<property name="nunit.path" value="bin\nunit\nunit-console-x86.exe" />
+	<property name="runtests" value="true" unless="${property::exists('runtests')}" />
+	
+	<!-- default configuration -->
+	<property name="project.config" value="release" />
+	<!-- debug|release -->
+	<property name="build.dir" value="${build.base}/${nant.settings.currentframework}.${platform::get-name()}-${project::get-name()}-${project.config}/"/>
+
+	<target name="build" depends="clean, version, init, commonassemblyinfo, compile, move-for-test, test, compile-samples, nuget"/>
+	<target name="cruise" depends="build,push-nuget,package"/> <!-- previously included commitPackage -->
+	<target name="commiter" depends="build, help, package"/> <!-- previously included analyze -->
+
+	<target name="init" description="Initializes build properties">
+		<tstamp>
+			<formatter property="datetime.buildtime" pattern="yyyy-MM-dd, HH:mm:ss" />
+		</tstamp>
+		<delete dir="${build.base}"/>
+		<mkdir dir="${build.dir}" />
+		<echo message="Current Directory: ${project::get-base-directory()}"/>
+	</target>
+
+	<target name="clean" description="delete build artifacts">
+		<delete dir="${build.dir}" failonerror="false" />
+	</target>
+
+	<target name="version" description="mark AssemblyInfo builds with the build number">
+		<!-- TODO: Needs re-writing for git -->
+	</target>
+
+	<target name="commonassemblyinfo" depends="version, init">
+		<echo message="MARKING THIS BUILD AS VERSION ${project.fullversion}" />
+		<delete file="${solution.dir}/CommonAssemblyInfo.cs" failonerror="false"/>
+		<asminfo output="${solution.dir}/CommonAssemblyInfo.cs" language="CSharp">
+			<imports>
+				<import namespace="System" />
+				<import namespace="System.Reflection" />
+				<import namespace="System.Runtime.InteropServices" />
+			</imports>
+			<attributes>
+				<attribute type="ComVisibleAttribute" value="false" />
+				<attribute type="AssemblyVersionAttribute" value="${project.fullversion}" />
+				<attribute type="AssemblyFileVersionAttribute" value="${project.fullversion}" />
+				<attribute type="AssemblyCopyrightAttribute" value="Copyright © ${company.name} 2007-${datetime::get-year(datetime::now())}" />
+				<attribute type="AssemblyProductAttribute" value="${project::get-name()}" />
+				<attribute type="AssemblyCompanyAttribute" value="${company.name}" />
+				<attribute type="AssemblyConfigurationAttribute" value="${project.config}" />
+				<attribute type="AssemblyInformationalVersionAttribute" value="${project.fullversion}" />
+			</attributes>
+			<references>
+				<include name="System.dll" />
+			</references>
+		</asminfo>
+	</target>
+
+	<target name="compile" depends="init">
+		<echo message="Build Directory is ${build.dir}" />
+		<exec program="${msbuild.path}" commandline="${solution.file} /t:Clean /p:Configuration=${project.config} /v:q" workingdir="." />
+		<exec program="${msbuild.path}" commandline="${solution.file} /t:Rebuild /p:Configuration=${project.config} /v:q" workingdir="." />
+	</target>
+
+	<target name="move-for-test">
+		<delete dir="${build.dir}"/>
+		<copy todir="${build.dir}" flatten="true">
+			<fileset basedir="${solution.dir}">
+				<include name="/**/bin/${project.config}/**" />
+				<include name="*.config"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="test" depends="init" if="${runtests}">
+		<property name="main.unit" value="${build.dir}/MvcContrib.UnitTests.dll"/>
+		<property name="command.unit" value="${build.dir}/MvcContrib.CommandProcessor.UnitTests.dll"/>
+		<property name="command.integration" value="${build.dir}/MvcContrib.CommandProcessor.IntegrationTests.dll"/>
+		<delete dir="${results.dir}" if="${directory::exists('${results.dir}')}" verbose="true" />
+		<mkdir dir="${results.dir}"/>
+		<exec program="${nunit.path}" 
+			commandline="${main.unit} ${command.unit} ${command.integration} /xml:${results.dir}\TestResult.xml" 
+			workingdir="." />
+
+		<!--<nunit2 failonerror="true" verbose="true">
+			<formatter type="Xml" outputdir="${results.dir}" usefile="true" extension=".xml"/>
+			<formatter type="Plain" />
+			<test assemblyname="${build.dir}/MVCContrib.UnitTests.dll">
+				<categories>
+					<exclude name="Integration" />
+				</categories>
+			</test>
+		</nunit2>-->
+	</target>
+
+	<target name="move-for-samples">    
+		<delete dir="${samples.dir}\bin" />
+		<copy todir="${samples.dir}\bin" flatten="true">
+			<fileset basedir="${build.dir}">
+				<include name="/**/*.dll" />
+			</fileset>
+		</copy>
+	</target>
+  
+	<target name="compile-samples" depends="init, move-for-samples">  
+		<echo message="Build Directory is ${build.dir}" />
+		<exec program="${msbuild.path}" commandline="${samples.dir}\MvcContrib.TestHelper\MvcContrib.TestHelper.Sample.sln /t:Clean /p:Configuration=${project.config} /v:q" workingdir="." />
+		<exec program="${msbuild.path}" commandline="${samples.dir}\MvcContrib.TestHelper\MvcContrib.TestHelper.Sample.sln /t:Rebuild /p:Configuration=${project.config} /v:q" workingdir="." />
+    </target>
+
+ 	<target name="release" depends="version document">
+		<exec 	program="bin\codeplex\CreateRelease.exe"
+				commandline="&quot;RC - ${project.fullversion}&quot;"
+				workingdir="." />
+	</target>
+
+  <target name="merge">
+    <exec program="bin\ilmerge\ilmerge.exe"
+          commandline="/lib:.\bin\aspnetmvc\ /targetplatform:v4,C:\Windows\Microsoft.NET\Framework\v4.0.30319 /log:ilmerge.log /t:library /out:src\MvcContrib.TestHelper.WatiN\bin\${project.config}\MvcContrib.WatiN.dll  .\src\MvcContrib.TestHelper.WatiN\bin\${project.config}\MvcContrib.TestHelper.WatiN.dll .\src\MvcContrib.TestHelper.WatiN\bin\${project.config}\watin.core.dll .\src\MvcContrib.TestHelper.WatiN\bin\${project.config}\Interop.SHDocVw.dll .\src\MvcContrib.TestHelper.WatiN\bin\${project.config}\MvcContrib.TestHelper.dll "
+					                                                     
+          workingdir="." />
+  </target>
+
+  <target name="help">
+    <exec program="bin\docu\docu.exe"
+          commandline="src\MvcContrib\bin\${project.config}\MvcContrib.dll --output=build\help\mvccontrib"					                                                     
+          workingdir="." />
+    <exec program="bin\docu\docu.exe"
+          commandline="src\MvcContrib.FluentHtml\bin\${project.config}\MvcContrib.FluentHtml.dll --output=build\help\mvccontrib_fluentHtml"
+          workingdir="." />
+    <exec program="bin\docu\docu.exe"
+          commandline="src\MvcContrib.testhelper\MvcContrib.testhelper\bin\${project.config}\MvcContrib.testhelper.dll --output=build\help\mvccontrib_testhelper"
+          workingdir="." />
+  </target>
+  <target name="package" depends="merge">
+		<!-- TODO: How do we generate ChangeLog now that we're using git?-->
+		<!-- 		
+		  MvcContrib
+			license
+			MvcContrib dll and pdb
+			MvcContrib.TestHelpers dll and pdb
+			QuickStart.txt
+		
+		  MvcContrib.Extras
+				  make a new dir for release.
+				  include subfolders
+					  bin
+						  referenceDLLs
+					  samples
+		-->
+		<delete dir="${build.base}/release/" failonerror="false"></delete>
+		<mkdir dir="${build.base}/release/" />
+
+    <property name="PortableAreaTemplateRelease" value="${build.base}/release/PortableAreaTemplate/"/>
+    <mkdir dir="${PortableAreaTemplateRelease}" />
+    <copy todir="${PortableAreaTemplateRelease}" flatten="false">
+      <fileset basedir="${solution.dir}/PortableAreaProjectTemplate">
+        <include name="/**/*.*" />
+      </fileset>
+    </copy>
+    <copy todir="${PortableAreaTemplateRelease}/lib" flatten="true">
+      <fileset basedir="${solution.dir}">
+        <include name="/**/bin/${project.config}/mvccontrib.dll" />
+      </fileset>
+    </copy>
+    <zip zipfile="build/PortableAreaProjectTemplate.zip" includeemptydirs="true" >
+      <fileset basedir="${PortableAreaTemplateRelease}">
+        <include name="**/*.*"/>
+      </fileset>
+    </zip>
+      <copy todir="${build.base}" flatten="true">
+          <fileset basedir="${solution.dir}">
+              <include name="/**/bin/${project.config}/mvccontrib.dll" />
+          </fileset>
+      </copy>
+              <property name="ContribRelease" value="${build.base}/release/MvcContrib/"/>
+		<mkdir dir="${ContribRelease}" />    
+		<copy todir="${ContribRelease}" flatten="true">
+			<fileset basedir="${solution.dir}">
+				<include name="/**/bin/${project.config}/mvccontrib.dll" />
+				<include name="/**/bin/${project.config}/mvccontrib.xml" />
+				<include name="/**/bin/${project.config}/mvccontrib.testhelper.dll" />
+				<include name="/**/bin/${project.config}/mvccontrib.testhelper.xml" />
+				<include name="/**/bin/${project.config}/mvccontrib.fluenthtml.dll"/>
+				<include name="/**/bin/${project.config}/mvccontrib.fluenthtml.xml"/>
+        <include name="/**/bin/${project.config}/mvccontrib.watin.dll"/>
+      </fileset>
+		</copy>
+    <copy todir="${ContribRelease}/help" flatten="false">
+      <fileset basedir="${build.base}/help">
+        <include name="/**/*.*"/>
+      </fileset>
+    </copy>
+
+    <copy todir="${ContribRelease}/T4MVC" flatten="false">
+      <fileset basedir="src\T4MVC\T4MVCHostMvcApp\T4MVC Files">
+        <include name="*.t*"/>
+      </fileset>
+    </copy>
+    <copy todir="${ContribRelease}" >
+			<fileset basedir=".">
+				<include name="license.txt" />
+			</fileset>
+		</copy>
+		<copy todir="${ContribRelease}" >
+			<fileset basedir=".">
+				<include name="changelog.txt" />
+			</fileset>
+		</copy>
+		<mkdir dir="${ContribRelease}Dependencies/" />
+		<copy todir="${ContribRelease}Dependencies/" flatten="true">
+			<fileset basedir="${solution.dir}">
+				<include name="/**/bin/${project.config}/Microsoft.Web.MVC.dll" />
+				<include name="/**/bin/${project.config}/Rhino.Mocks.Dll" />
+			</fileset>
+		</copy>
+		<mkdir dir="${ContribRelease}InputBuilderTemplates/" />
+		<copy todir="${ContribRelease}InputBuilderTemplates/" flatten="true">
+			<fileset basedir="${solution.dir}">
+				<include name="MvcContrib/UI/InputBuilder/Views/InputBuilders/*.*" />
+			</fileset>
+		</copy>
+		<zip zipfile="build/MVCContrib.release.zip" includeemptydirs="false" >
+			<fileset basedir="${ContribRelease}">
+				<include name="license.txt" />
+				<include name="**/*.*"/>
+				<exclude name="**/*.CodeAnalysisLog.xml"/>
+				<exclude name="**/*.lastcodeanalysissucceeded"/>
+			</fileset>
+		</zip>
+		<property name="ExtrasRelease" value="${build.base}/release/Extras/"/>
+		<mkdir dir="${ExtrasRelease}" />
+		<mkdir dir="${build.base}/release/" />
+		<mkdir dir="${build.base}/release/" />
+		<mkdir dir="${ExtrasRelease}/Bin" />
+		<copy todir="${ExtrasRelease}/Bin" flatten="true">
+			<fileset basedir="${solution.dir}">
+				<include name="/**/bin/${project.config}/mvccontrib**" />
+			</fileset>
+		</copy>
+		<mkdir dir="${ExtrasRelease}/Bin/referenceDLLs" />
+		<copy todir="${ExtrasRelease}/Bin/referenceDLLs" flatten="false">
+			<fileset basedir="bin">
+				<include name="AspnetMvc/*.dll" />
+				<include name="Boo/*.dll" />
+				<include name="Castle/*.dll" />
+				<include name="mvpxml/*.dll" />
+				<include name="spring.net/*.dll" />
+				<include name="structuremap/*.dll" />
+				<include name="unity/*.dll" />
+			</fileset>
+		</copy>
+		<mkdir dir="${ExtrasRelease}/Samples" />
+		<copy todir="${ExtrasRelease}/Samples" >
+			<fileset basedir="${solution.dir}/">
+				<exclude name="**/bin/**"/>
+				<exclude name="**/obj/**"/>
+				<exclude name="**/samples/**"/>
+				<include name="/**samples**/**" />
+			</fileset>
+		</copy>
+		<copy todir="${ExtrasRelease}/Samples" >
+			<fileset basedir="${solution.dir}/Samples">
+				<exclude name="**/bin/**"/>
+				<exclude name="**/obj/**"/>
+				<exclude name="/**resharper**/**"/>
+				<include name="/**/**" />
+			</fileset>
+		</copy>
+		<copy todir="${ExtrasRelease}/Samples/bin" >
+		  <fileset basedir="${solution.dir}/Samples/bin">
+			<include name="*.*"/>
+		  </fileset>
+		</copy>
+		<mkdir dir="${ExtrasRelease}/Helpers/" />
+		<copy todir="${ExtrasRelease}/Helpers" >
+			<fileset basedir="extras">
+				<include name="/**/**" />
+			</fileset>
+		</copy>
+		<copy todir="${ExtrasRelease}" >
+		  <fileset basedir=".">        
+			<include name="license.txt" />
+		  </fileset>
+		</copy>
+		<copy todir="${ExtrasRelease}" >
+		  <fileset basedir=".">
+			<include name="changelog.txt" />
+		  </fileset>
+		</copy>
+		<copy todir="${ExtrasRelease}" >
+		  <fileset basedir="./build/help">
+			<include name="*.chm" />
+		  </fileset>
+		</copy>
+		<zip zipfile="build/MVCContrib.Extras.release.zip" includeemptydirs="false" >
+			<fileset basedir="${ExtrasRelease}">
+				<include name="license.txt" />
+				<include name="**/*.*"/>
+				<exclude name="**/*.CodeAnalysisLog.xml"/>
+				<exclude name="**/*.lastcodeanalysissucceeded"/>
+			</fileset>
+		</zip>
+		<zip zipfile="build/MVCContrib.source.zip" includeemptydirs="false" >
+			<fileset basedir="${trunk.dir}" >
+				<exclude name=".git/**"/>
+				<!--<exclude name="**/LatestVersion/**"/>-->
+				<exclude name="**/build/**"/>
+				<exclude name="src/**/bin/**"/>
+				<exclude name="**/obj/**"/>
+				<exclude name="**/*.resharper*"/>
+				<exclude name="**/*.suo"/>
+				<exclude name="**/*.cache"/>
+				<exclude name="**/*.user"/>
+				<exclude name="**/_ReSharper.MVCContrib/**"/>
+				<exclude name="**/*.CodeAnalysisLog.xml"/>
+				<exclude name="**/*.lastcodeanalysissucceeded"/>
+				<include name="**/*.*"/>
+			</fileset>
+		</zip>
+    <zip zipfile="build/MVCContrib.T4MVC.release.zip" includeemptydirs="false" >
+      <fileset basedir="${ContribRelease}">
+        <include name="license.txt" />
+        <include name="T4MVC/*.*"/>
+        <exclude name="**/*.CodeAnalysisLog.xml"/>
+        <exclude name="**/*.lastcodeanalysissucceeded"/>
+      </fileset>
+    </zip>
+  </target>
+  <target name="document" >
+	<!-- TODO: Investigate using docu to do this -->
+	<!--
+    <unzip zipfile="bin\sandcastle\data.zip" todir="bin\sandcastle\" failonerror="false"/>
+    <exec program="${framework::get-framework-directory(framework::get-target-framework())}\msbuild.exe"
+				  commandline="Documentation\DocumentationProject\MvcContrib.shfbproj" workingdir="." />
+    <copy file="build\Help\Output\documentation.chm" tofile="LatestVersion\MvcContribDocumentation.chm"/>
+	-->
+  </target>
+  <target name="nuget">
+    <property name="package.dir" value="${build.base}\packages" />
+    <property name="packagetemp" value="${package.dir}\temp" />
+   
+    <!-- Create the directory structure for the packages -->
+    <copy todir="${packagetemp}\MvcContrib" file="nuspecs\MvcContrib.nuspec" />
+    <copy todir="${packagetemp}\MvcContrib\lib" file="${build.dir}\MvcContrib.dll" />
+    
+    <copy todir="${packagetemp}\MvcContrib.FluentHtml" file="nuspecs\MvcContrib.FluentHtml.nuspec" />
+    <copy todir="${packagetemp}\MvcContrib.FluentHtml\lib" file="${build.dir}\MvcContrib.FluentHtml.dll" />
+    
+    <copy todir="${packagetemp}\MvcContrib.TestHelper" file="nuspecs\MvcContrib.TestHelper.nuspec" />
+    <copy todir="${packagetemp}\MvcContrib.TestHelper\lib" file="${build.dir}\MvcContrib.TestHelper.dll" />
+    
+    <copy todir="${packagetemp}\MvcContrib.WatiN" file="nuspecs\MvcContrib.WatiN.nuspec" />
+    <copy todir="${packagetemp}\MvcContrib.WatiN\lib" file="${build.dir}\MvcContrib.TestHelper.WatiN.dll" />
+    <!-- TODO: There isn't a watin package on nuget, so we package it as well for now -->
+    <copy todir="${packagetemp}\MvcContrib.WatiN\lib" file="${build.dir}\WatiN.Core.dll" />
+    
+    <!-- Replace the version numbers -->
+
+    <foreach item="Folder" in="${packagetemp}" property="foldername">
+      <xmlpoke file="${foldername}\${path::get-file-name(foldername)}.nuspec" xpath="/package/metadata/version" value="${project.fullversion}" />
+    </foreach>
+
+    <xmlpoke file="${packagetemp}\MvcContrib.WatiN\MvcContrib.WatiN.nuspec" xpath="/package/metadata/dependencies/dependency[@id='MvcContrib.TestHelper']/@version" value="${project.fullversion}" />
+    
+    <foreach item="Folder" in="${packagetemp}" property="foldername">
+      <echo message="${foldername}" />
+      <exec program="bin\nuget\nuget.exe" workingdir="${package.dir}" commandline="pack ${foldername}\${path::get-file-name(foldername)}.nuspec" />
+    </foreach>
+
+  </target>
+  <target name="push-nuget">
+    <foreach item="File" in="${package.dir}" property="filename">
+      <echo message="${filename}" />
+      <exec program="bin\nuget\nuget.exe" workingdir="${package.dir}" commandline="push ${filename} ${nuget.key}" />
+    </foreach>
+  </target>
+</project>

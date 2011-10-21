@@ -1,0 +1,30 @@
+﻿@model MvcContrib.Samples.UI.Models.DerivedTypeModelBinder.User
+@using MvcContrib.UI.DerivedTypeModelBinder
+@Html.TypeStamp()
+<h3>User Information</h3>
+<table>
+    <tr>
+        <td>
+            User Id
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.UserId)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            User Name
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.UserName)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Email
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.EmailId)
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+ <metadata>
+   <id>MvcContrib.Mvc3-ci</id>
+   <version></version>
+   <authors>Outercurve Foundation</authors>
+   <requireLicenseAcceptance>false</requireLicenseAcceptance>
+   <description>MvcContrib was designed to add functionality and ease-of-use to Microsoft's ASP.NET MVC Framework, MVC Contrib is useful for developers looking to develop and test UI elements on top of the ASP.NET MVC framework.</description>
+   <summary>MvcContrib was designed to add functionality and ease-of-use to Microsoft's ASP.NET MVC Framework, MVC Contrib is useful for developers looking to develop and test UI elements on top of the ASP.NET MVC framework.</summary>
+   <language>en-US</language>
+   <projectUrl>http://mvccontrib.codeplex.com/</projectUrl>
+   <licenseUrl>http://mvccontrib.codeplex.com/license</licenseUrl>
+   <tags>mvc</tags>
+   <dependencies>
+     <dependency id="Mvc3Futures" />
+   </dependencies>
+ </metadata>
+</package>

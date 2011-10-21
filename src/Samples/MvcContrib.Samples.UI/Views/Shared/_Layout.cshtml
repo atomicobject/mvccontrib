@@ -1,0 +1,44 @@
+﻿@using MvcContrib.UI.MenuBuilder
+@using MvcContrib.Samples.UI.Navigation
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/jquery.jdMenu.css")" rel="stylesheet" type="text/css" />
+
+	
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.2.6.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.dimensions.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.positionBy.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.bgiframe.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.jdMenu.js")"></script>
+	@RenderSection("Head", required: false)
+</head>
+
+<body>
+    <div class="page">
+
+        <div id="header">
+            <div id="title">
+                <h1>My MVC Application</h1>
+            </div>
+
+            <div id="logindisplay">
+                &nbsp;
+            </div>
+
+            <div id="menucontainer">
+				@{ Html.Menu(GridSampleMenu.MainMenu(Url)); }
+            </div>
+        </div>
+
+        <div id="main">
+            @RenderBody()
+            <div id="footer">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

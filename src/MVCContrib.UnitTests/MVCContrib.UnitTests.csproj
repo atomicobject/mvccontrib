@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0B8EC0CE-1AC1-4ACF-A380-A588E5E1E9CF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MvcContrib.UnitTests</RootNamespace>
+    <AssemblyName>MVCContrib.UnitTests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Boo.Lang, Version=2.0.0.0, Culture=neutral, PublicKeyToken=32c39770e9a21a67, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\boo\Boo.Lang.dll</HintPath>
+    </Reference>
+    <Reference Include="Boo.Lang.Compiler, Version=2.0.0.0, Culture=neutral, PublicKeyToken=32c39770e9a21a67, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\boo\Boo.Lang.Compiler.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core, Version=1.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\castle\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Services.Transaction, Version=1.1.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\castle\Castle.Services.Transaction.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=2.1.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\castle\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.3.0.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\HtmlAgilityPack\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mvc3Futures.3.0.20105.0\lib\Microsoft.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Mvp.Xml, Version=2.0.2158.1055, Culture=neutral, PublicKeyToken=dd92544dc05f5671, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\mvpxml\Mvp.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.4.3.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\nunit\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.Mocks, Version=3.6.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\rhinomocks\Rhino.Mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Core, Version=1.1.0.2, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\spring.net\Spring.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\structuremap\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel.Web">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\AspNetMvc\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\WebPages\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Yahoo.Yui.Compressor, Version=1.4.0.0, Culture=neutral, PublicKeyToken=f8b4b81ec75097e2, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\Yahoo.Yui.Compressor\Yahoo.Yui.Compressor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="ActionResults\RedirectToRouteResultTester.cs" />
+    <Compile Include="AssertionExtensions.cs" />
+    <Compile Include="Binders\DerivedTypeBinderAwareAttributeTests.cs" />
+    <Compile Include="Binders\DerivedTypeModelBinderCacheTests.cs" />
+    <Compile Include="Binders\DerivedTypeModelBinderTests.cs" />
+    <Compile Include="Binders\TypeStampOperatorTests.cs" />
+    <Compile Include="CultureHelper.cs" />
+    <Compile Include="CustomPaginationTester.cs" />
+    <Compile Include="Filters\LayoutAttributeTester.cs" />
+    <Compile Include="BaseViewTester.cs" />
+    <Compile Include="ControllerExtensionsTester.cs" />
+    <Compile Include="ConventionController\CustomActionResult.cs" />
+    <Compile Include="ConventionController\TestController.cs" />
+    <Compile Include="ConventionController\TestFilter.cs" />
+    <Compile Include="EnumerableExtensionTests.cs" />
+    <Compile Include="Filters\ModelStateToTempDataAttributeTests.cs" />
+    <Compile Include="Filters\MvcTransactionAttributeTester.cs" />
+    <Compile Include="Filters\PassParametersDuringRedirectAttributeTester.cs" />
+    <Compile Include="Filters\TempDataToViewDataTester.cs" />
+    <Compile Include="FluentHtml\AutoLabelTests.cs" />
+    <Compile Include="FluentHtml\ButtonTests.cs" />
+    <Compile Include="FluentHtml\CheckBoxListTests.cs" />
+    <Compile Include="FluentHtml\CheckboxTests.cs" />
+    <Compile Include="FluentHtml\ColorPickerTests.cs" />
+    <Compile Include="FluentHtml\CustomBehaviors\CustomExpressionHtmlBehavior.cs" />
+    <Compile Include="FluentHtml\CustomBehaviors\CustomRangeHtmlBehavior.cs" />
+    <Compile Include="FluentHtml\CustomBehaviors\CustomRequiredHtml5Behavior.cs" />
+    <Compile Include="FluentHtml\DataListTests.cs" />
+    <Compile Include="FluentHtml\EmailBoxTests.cs" />
+    <Compile Include="FluentHtml\NumberBoxTests.cs" />
+    <Compile Include="FluentHtml\DateAndTimePickerTests.cs" />
+    <Compile Include="FluentHtml\RangeBoxTests.cs" />
+    <Compile Include="FluentHtml\SearchBoxTests.cs" />
+    <Compile Include="FluentHtml\TelephoneBoxTests.cs" />
+    <Compile Include="FluentHtml\TypeCssClassBehaviorTests.cs" />
+    <Compile Include="FluentHtml\CustomBehaviors\AppyJsonMetadataToCssBehavior.cs" />
+    <Compile Include="FluentHtml\CustomBehaviors\CustomMaxLengthInMetadataBehavior.cs" />
+    <Compile Include="FluentHtml\CustomBehaviors\CustomRequiredHtmlBehavior.cs" />
+    <Compile Include="FluentHtml\CustomBehaviors\CustomMaxLengthBehavior.cs" />
+    <Compile Include="FluentHtml\CustomBehaviors\CustomRequiredInMetadataBehavior.cs" />
+    <Compile Include="FluentHtml\Fakes\FakeChildModel.cs" />
+    <Compile Include="FluentHtml\Fakes\FakeEnum.cs" />
+    <Compile Include="FluentHtml\Fakes\FakeModel.cs" />
+    <Compile Include="FluentHtml\Fakes\FakeViewDataContainer.cs" />
+    <Compile Include="FluentHtml\Fakes\FakeViewModelContainer.cs" />
+    <Compile Include="FluentHtml\FileUploadTests.cs" />
+    <Compile Include="FluentHtml\FormLiteralTests.cs" />
+    <Compile Include="FluentHtml\Helpers\TestExtensions.cs" />
+    <Compile Include="FluentHtml\HiddenTests.cs" />
+    <Compile Include="FluentHtml\LabelTests.cs" />
+    <Compile Include="FluentHtml\LiteralTests.cs" />
+    <Compile Include="FluentHtml\ModelExpressionHelperTests.cs" />
+    <Compile Include="FluentHtml\ModelMasterViewPageTests.cs" />
+    <Compile Include="FluentHtml\ModelStateDictionaryExtensionsTests.cs" />
+    <Compile Include="FluentHtml\PartialNameConventionServiceTests.cs" />
+    <Compile Include="FluentHtml\RadioButtonTests.cs" />
+    <Compile Include="FluentHtml\RadioSetTests.cs" />
+    <Compile Include="FluentHtml\RequiredCssClassBehaviorTests.cs" />
+    <Compile Include="FluentHtml\ResetButtonTests.cs" />
+    <Compile Include="FluentHtml\UrlBoxTests.cs" />
+    <Compile Include="FluentHtml\ValidationMemberBehaviorTests.cs" />
+    <Compile Include="FluentHtml\ModelViewPageTests.cs" />
+    <Compile Include="FluentHtml\ModelViewUserControlPageTests.cs" />
+    <Compile Include="FluentHtml\MultiSelectTests.cs" />
+    <Compile Include="FluentHtml\OptionTests.cs" />
+    <Compile Include="FluentHtml\PasswordTests.cs" />
+    <Compile Include="FluentHtml\SelectTests.cs" />
+    <Compile Include="FluentHtml\SubmitButtonTests.cs" />
+    <Compile Include="FluentHtml\TextAreaTests.cs" />
+    <Compile Include="FluentHtml\TextboxTests.cs" />
+    <Compile Include="FluentHtml\ViewDataContainerExtensionBehaviorTests.cs" />
+    <Compile Include="FluentHtml\ViewDataContainerExtensionsTests.cs" />
+    <Compile Include="FluentHtml\ViewModelContainerExtensionsTests.cs" />
+    <Compile Include="FluentHtml\ViewModelContainerTestBase.cs" />
+    <Compile Include="FluentHtml\Views\TestableViewPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HashTester.cs" />
+    <Compile Include="IoC\IDependency.cs" />
+    <Compile Include="IoC\INestedDependency.cs" />
+    <Compile Include="IoC\NestedDependency.cs" />
+    <Compile Include="IoC\SimpleDependency.cs" />
+    <Compile Include="IoC\WindsorExtensionTester.cs" />
+    <Compile Include="EmailTemplateServiceTest.cs" />
+    <Compile Include="MetaData\FilterTester.cs" />
+    <Compile Include="ActionResults\XmlActionResultTester.cs" />
+    <Compile Include="MvcRouteTester.cs" />
+    <Compile Include="ConventionController\RescueTester.cs" />
+    <Compile Include="LazyPaginationTester.cs" />
+    <Compile Include="PortableAreas\ApplicationBusTester.cs" />
+    <Compile Include="PortableAreas\AssemblyResourceStoreTester.cs" />
+    <Compile Include="PortableAreas\EmbeddedResourceControllerTester.cs" />
+    <Compile Include="PortableAreas\MessageHandlerFactoryTester.cs" />
+    <Compile Include="PortableAreas\PortableAreaRegistrationTester.cs" />
+    <Compile Include="PortableAreas\PortableAreaContentTester.cs" />
+    <Compile Include="PortableAreas\TestingAreaRegistration.cs" />
+    <Compile Include="Routing\RegexRouteTester.cs" />
+    <Compile Include="SortingExtensionsTester.cs" />
+    <Compile Include="TestHelper\ActionResultHelperTester.cs" />
+    <Compile Include="TestHelper\ControllerBuilderTests.cs" />
+    <Compile Include="TestHelper\MockFactories\FirstAvailableMockFactoryTests.cs" />
+    <Compile Include="TestHelper\MockFactories\MoqFactoryTests.cs" />
+    <Compile Include="TestHelper\MockFactories\MoqProxyTests.cs" />
+    <Compile Include="TestHelper\MockFactories\RhinoMocksFactoryTests.cs" />
+    <Compile Include="TestHelper\MockFactories\RhinoMocksProxyTests.cs" />
+    <Compile Include="TestHelper\RouteTestingExtensionsTester.cs" />
+    <Compile Include="TestHelper\SessionTests.cs" />
+    <Compile Include="TestHelper\TempDataTestExtensionsTests.cs" />
+    <Compile Include="TestHelper\TestHelperController.cs" />
+    <Compile Include="TestHelper\TestHelperWithArgsController.cs" />
+    <Compile Include="TestHelper\WriteableHttpFileCollectionTests.cs" />
+    <Compile Include="UI\DataListTests.cs" />
+    <Compile Include="UI\DerivedTypeModelBinder\HtmlExtensionTests.cs" />
+    <Compile Include="UI\DerivedTypeModelBinder\TestClass.cs" />
+    <Compile Include="UI\Grid\AutoColumnBuilderTester.cs" />
+    <Compile Include="UI\Grid\ColumnBuilderTester.cs" />
+    <Compile Include="UI\Grid\GridExtensionTester.cs" />
+    <Compile Include="UI\Grid\GridModelTester.cs" />
+    <Compile Include="UI\Grid\GridRendererTester.cs" />
+    <Compile Include="UI\Grid\GridTester.cs" />
+    <Compile Include="UI\Grid\Person.cs" />
+    <Compile Include="UI\Html\HtmlHelperTests.cs" />
+    <Compile Include="UI\Html\ModelVisualizerTester.cs" />
+    <Compile Include="UI\Html\Person.cs" />
+    <Compile Include="UI\InputBuilder\AssemblyResourceProvider.cs" />
+    <Compile Include="UI\InputBuilder\AttributeTester.cs" />
+    <Compile Include="UI\InputBuilder\DisplayOrderExtensionsSpecs.cs" />
+    <Compile Include="UI\InputBuilder\HtmlExtensionsTester.cs" />
+    <Compile Include="UI\InputBuilder\IInputSpecificationExtensionsTester.cs" />
+    <Compile Include="UI\InputBuilder\InputBuilderTester.cs" />
+    <Compile Include="UI\InputBuilder\InputModelPropertyFactoryTester.cs" />
+    <Compile Include="UI\InputBuilder\InputPropertySpecificationTester.cs" />
+    <Compile Include="UI\InputBuilder\InputTester.cs" />
+    <Compile Include="UI\InputBuilder\InputTypeSpecificationHelper.cs" />
+    <Compile Include="UI\InputBuilder\ReflectionHelperTester.cs" />
+    <Compile Include="UI\InputBuilder\VirtualFileTester.cs" />
+    <Compile Include="UI\MenuBuilder\MenuBuilderTests.cs" />
+    <Compile Include="UI\PagerTests.cs" />
+    <Compile Include="UrlHelperExtensionsTester.cs" />
+    <Compile Include="ViewDataExtensionsForIDictionaryTester.cs" />
+    <Compile Include="ViewDataExtensionsForViewDataTester.cs" />
+    <Compile Include="MvcMockHelpers.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MvcContrib.Castle\MvcContrib.Castle.csproj">
+      <Project>{F3C74912-8FF8-4F79-8CA1-4697025FDF2D}</Project>
+      <Name>MvcContrib.Castle</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MvcContrib.FluentHtml\MvcContrib.FluentHtml.csproj">
+      <Project>{35AFBC04-8C09-42B7-A56A-EA404688A5B1}</Project>
+      <Name>MvcContrib.FluentHtml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MvcContrib.TestHelper\MvcContrib.TestHelper\MvcContrib.TestHelper.csproj">
+      <Project>{F2A3F400-A20E-4B83-959B-EBD14D6C143E}</Project>
+      <Name>MvcContrib.TestHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCContrib.VB.UnitTests\MVCContrib.VB.UnitTests.vbproj">
+      <Project>{49CA25E8-C0C6-4007-9E5A-44AE4828E92E}</Project>
+      <Name>MVCContrib.VB.UnitTests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCContrib\MVCContrib.csproj">
+      <Project>{2E29C28C-B0B7-4D8C-A06F-67AD70C765EA}</Project>
+      <Name>MVCContrib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PortableAreas\images\arrow.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Configuration\" />
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PreBuildEvent>xcopy "$(SolutionDir)..\bin\moq\Moq.dll" . /D /Y</PreBuildEvent>
+  </PropertyGroup>
+</Project>

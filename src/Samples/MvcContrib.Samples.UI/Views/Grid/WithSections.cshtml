@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Person>
+@using MvcContrib.UI.Grid;
+@using MvcContrib.Samples.UI.Models;
+
+@{
+    ViewBag.Title = "Grid with Custom Sections";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+ <h2>Grid with Custom Sections Example</h2>
+    
+@Html.Grid(Model).Columns(column => {
+     	column.For(x => x.Id).Named("Person ID");
+     	column.For(x => x.Name);
+     	column.For(x => x.Gender);    
+     	column.For(x => x.DateOfBirth) //Example of custom header attributes
+				.HeaderAttributes(style => "font-weight:bold; background-color: Yellow").Format("{0:d}");
+		column.For(x => Html.Partial("_ViewPerson", x)); //Example of using a Partial view for complex cells
+		// Here we actually embed some markup inside a column:
+		column.Custom(
+			@<div>
+				<em>Hello there</em>
+				<strong>@item.Name</strong>
+			</div>
+		).Named("Custom Column");
+})

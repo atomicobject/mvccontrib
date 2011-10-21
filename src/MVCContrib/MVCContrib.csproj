@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2E29C28C-B0B7-4D8C-A06F-67AD70C765EA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MvcContrib</RootNamespace>
+    <AssemblyName>MvcContrib</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>false</SignAssembly>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DocumentationFile>bin\Debug\MvcContrib.XML</DocumentationFile>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+    <NoWarn>1591 1574 1711</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+    <DocumentationFile>bin\Release\MvcContrib.XML</DocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>1591 1574 1711</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Mvc, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mvc3Futures.3.0.20105.0\lib\Microsoft.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel.Web">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\WebPages\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\AspNetMvc\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\WebPages\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\WebPages\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\WebPages\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="ActionResults\RedirectToRouteResult.cs" />
+    <Compile Include="ActionResults\XmlResult.cs" />
+    <Compile Include="Attributes\DerivedTypeBinderAwareAttribute.cs" />
+    <Compile Include="Binders\DerivedTypeModelBinder.cs" />
+    <Compile Include="Binders\DerivedTypeModelBinderCache.cs" />
+    <Compile Include="Binders\IPropertyNameProvider.cs" />
+    <Compile Include="Binders\ITypeStampOperator.cs" />
+    <Compile Include="Binders\TypeStampOperator.cs" />
+    <Compile Include="EnumerableExtensions.cs" />
+    <Compile Include="Filters\LayoutAttribute.cs" />
+    <Compile Include="Filters\ModelStateToTempDataAttribute.cs" />
+    <Compile Include="Filters\PassParametersDuringRedirectAttribute.cs" />
+    <Compile Include="Filters\RescueAttribute.cs" />
+    <Compile Include="ControllerExtensions.cs" />
+    <Compile Include="Filters\PreconditionFilter.cs" />
+    <Compile Include="Filters\PredicatePreconditionFilter.cs" />
+    <Compile Include="Filters\RegExPreconditionFilter.cs" />
+    <Compile Include="Filters\TempDataToViewData.cs" />
+    <Compile Include="ActionResults\HeadResult.cs" />
+    <Compile Include="Hash.cs" />
+    <Compile Include="Pagination\CustomPagination.cs" />
+    <Compile Include="Pagination\IPagination.cs" />
+    <Compile Include="Pagination\LazyPagination.cs" />
+    <Compile Include="Pagination\PaginationHelper.cs" />
+    <Compile Include="PortableAreas\ApplicationBus.cs" />
+    <Compile Include="PortableAreas\AssemblyResourceManager.cs" />
+    <Compile Include="PortableAreas\AssemblyResourceStore.cs" />
+    <Compile Include="PortableAreas\AssemblyResourceLocator.cs" />
+    <Compile Include="PortableAreas\PortableAreaContent.cs" />
+    <Compile Include="PortableAreas\EmbeddedResourceController.cs" />
+    <Compile Include="PortableAreas\IApplicationBus.cs" />
+    <Compile Include="PortableAreas\IEventMessage.cs" />
+    <Compile Include="PortableAreas\IMessageHandler.cs" />
+    <Compile Include="PortableAreas\IMessageHandlerFactory.cs" />
+    <Compile Include="Bus.cs" />
+    <Compile Include="PortableAreas\MapExtensions.cs" />
+    <Compile Include="PortableAreas\PortableAreaMap.cs" />
+    <Compile Include="PortableAreas\PortableAreaRegistration.cs" />
+    <Compile Include="PortableAreas\PortableAreaStartupMessage.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Routing\MvcRoute.cs" />
+    <Compile Include="Routing\RegexRoute.cs" />
+    <Compile Include="Services\EmailMetadata.cs" />
+    <Compile Include="Services\EmailTemplateService.cs" />
+    <Compile Include="Services\IViewStreamReader.cs" />
+    <Compile Include="Services\IEmailTemplateService.cs" />
+    <Compile Include="Sorting\SortDirection.cs" />
+    <Compile Include="Sorting\SortExtensions.cs" />
+    <Compile Include="ThreadSafeDictionary.cs" />
+    <Compile Include="UI\CleanTagBuilder.cs" />
+    <Compile Include="UI\DataList\DataList.cs" />
+    <Compile Include="UI\DataList\DataListExtensions.cs" />
+    <Compile Include="UI\DerivedTypeModelBinder\HtmlExtensions.cs" />
+    <Compile Include="UI\Grid\AutoColumnBuilder.cs" />
+    <Compile Include="UI\Grid\ActionSyntax\ActionSyntaxExtensions.cs" />
+    <Compile Include="UI\Grid\ColumnBuilder.cs" />
+    <Compile Include="UI\Grid\GridColumn.cs" />
+    <Compile Include="UI\Grid\GridModel.cs" />
+    <Compile Include="UI\Grid\Grid.cs" />
+    <Compile Include="UI\Grid\GridExtensions.cs" />
+    <Compile Include="UI\Grid\GridRenderer.cs" />
+    <Compile Include="UI\Grid\GridRow.cs" />
+    <Compile Include="UI\Grid\GridRowViewData.cs" />
+    <Compile Include="UI\Grid\GridSections.cs" />
+    <Compile Include="UI\Grid\GridSortOptions.cs" />
+    <Compile Include="UI\Grid\HtmlTableGridRenderer.cs" />
+    <Compile Include="UI\Grid\IGridColumn.cs" />
+    <Compile Include="UI\Grid\IGridModel.cs" />
+    <Compile Include="UI\Grid\IGridRenderer.cs" />
+    <Compile Include="UI\Grid\RenderingContext.cs" />
+    <Compile Include="UI\Grid\Syntax.cs" />
+    <Compile Include="UI\Html\ModelVisualizerExtension.cs" />
+    <Compile Include="UI\InputBuilder\Attributes\CanDeleteAllAttribute.cs" />
+    <Compile Include="UI\InputBuilder\Attributes\DisplayOrderAttribute.cs" />
+    <Compile Include="UI\InputBuilder\Attributes\ExampleAttribute.cs" />
+    <Compile Include="UI\InputBuilder\Attributes\LabelAttribute.cs" />
+    <Compile Include="UI\InputBuilder\Attributes\NoAddAttribute.cs" />
+    <Compile Include="UI\InputBuilder\Attributes\NoDeleteAttribute.cs" />
+    <Compile Include="UI\InputBuilder\Attributes\PartialViewAttribute.cs" />
+    <Compile Include="UI\InputBuilder\Conventions\Property\ArrayPropertyConvention.cs" />
+    <Compile Include="UI\InputBuilder\Conventions\Property\DateTimePropertyConvention.cs" />
+    <Compile Include="UI\InputBuilder\Conventions\PropertyName\DefaultNameConvention.cs" />
+    <Compile Include="UI\InputBuilder\Conventions\Property\DefaultPropertyConvention.cs" />
+    <Compile Include="UI\InputBuilder\Conventions\Property\EnumPropertyConvention.cs" />
+    <Compile Include="UI\InputBuilder\Conventions\Property\GuidPropertyConvention.cs" />
+    <Compile Include="UI\InputBuilder\Conventions\PropertyName\IPropertyViewModelNameConvention.cs" />
+    <Compile Include="UI\InputBuilder\Conventions\Property\IPropertyViewModelFactory.cs" />
+    <Compile Include="UI\InputBuilder\DefaultPropertyConventionsFactory.cs" />
+    <Compile Include="UI\InputBuilder\DefaultTypeConventionsFactory.cs" />
+    <Compile Include="UI\InputBuilder\Helpers\DisplayOrderExtensions.cs" />
+    <Compile Include="UI\InputBuilder\Helpers\ExpressionHelper.cs" />
+    <Compile Include="UI\InputBuilder\Helpers\ReflectionHelper.cs" />
+    <Compile Include="UI\InputBuilder\Conventions\Type\DefaultTypeViewModelFactoryConvention.cs" />
+    <Compile Include="UI\InputBuilder\Conventions\Type\ITypeViewModelFactory.cs" />
+    <Compile Include="UI\InputBuilder\ViewEngine\RenderInputBuilderException.cs" />
+    <Compile Include="UI\InputBuilder\Views\DisplayPartial.cs" />
+    <Compile Include="UI\InputBuilder\Views\HtmlDisplayExtensions.cs" />
+    <Compile Include="UI\InputBuilder\Views\HtmlExtensions.cs" />
+    <Compile Include="UI\InputBuilder\InputSpecification\IInputSpecification.cs" />
+    <Compile Include="UI\InputBuilder\Views\IInputSpecificationExtensions.cs" />
+    <Compile Include="UI\InputBuilder\InputSpecification\Input.cs" />
+    <Compile Include="UI\InputBuilder\InputBuilder.cs" />
+    <Compile Include="UI\InputBuilder\InputSpecification\ViewModelFactory.cs" />
+    <Compile Include="UI\InputBuilder\InputSpecification\InputPropertySpecification.cs" />
+    <Compile Include="UI\InputBuilder\InputSpecification\InputTypeSpecification.cs" />
+    <Compile Include="UI\InputBuilder\Views\Partial.cs" />
+    <Compile Include="UI\InputBuilder\Views\PropertyViewModel.cs" />
+    <Compile Include="UI\InputBuilder\Views\TypeViewModel.cs" />
+    <Compile Include="UI\InputBuilder\Conventions\Property\PropertyInfoExtensions.cs" />
+    <Compile Include="UI\InputBuilder\ViewEngine\AssemblyResourceProvider.cs" />
+    <Compile Include="UI\InputBuilder\ViewEngine\AssemblyResourceVirtualFile.cs" />
+    <Compile Include="UI\InputBuilder\ViewEngine\EmbeddedResourceViewEngine.cs" />
+    <Compile Include="UI\Html\HtmlHelperExtensions.cs" />
+    <Compile Include="UI\InputBuilder\Views\TypeViewModelExtensions.asax.cs" />
+    <Compile Include="UI\MenuBuilder\ActionMenuItem.cs" />
+    <Compile Include="UI\MenuBuilder\MenuHelpText.cs" />
+    <Compile Include="UI\MenuBuilder\MenuTitle.cs" />
+    <Compile Include="UI\MenuBuilder\Menu.cs" />
+    <Compile Include="UI\MenuBuilder\MenuItem.cs" />
+    <Compile Include="UI\MenuBuilder\MenuList.cs" />
+    <Compile Include="UI\MenuBuilder\OpenAuthorizeAttribute.cs" />
+    <Compile Include="UI\MenuBuilder\SecureActionMenuItem.cs" />
+    <Compile Include="UI\Pager\Pager.cs" />
+    <Compile Include="UI\Pager\PaginationExtensions.cs" />
+    <Compile Include="UI\ParamBuilder\ExplicitFacadeDictionary.cs" />
+    <Compile Include="UI\ParamBuilder\ParamBuilder.cs" />
+    <Compile Include="UI\ParamBuilder\ParamNames.cs" />
+    <Compile Include="UI\ParamBuilder\Params.cs" />
+    <Compile Include="UI\ReturnUrl\IReturnUrlManager.cs" />
+    <Compile Include="UI\ReturnUrl\ReturnUrlManager.cs" />
+    <Compile Include="UrlHelperExtensions.cs" />
+    <Compile Include="ViewDataExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PortableAreas\Web.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <EmbeddedResource Include="UI\InputBuilder\Views\InputBuilders\Array.Master">
+      <SubType>ASPXCodeBehind</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\InputBuilder\Views\InputBuilders\Row.Master">
+      <SubType>ASPXCodeBehind</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\InputBuilder\Views\InputBuilders\Display.Master">
+      <SubType>ASPXCodeBehind</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\InputBuilder\Views\InputBuilders\Field.Master">
+      <SubType>ASPXCodeBehind</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\InputBuilder\Views\InputBuilders\HiddenField.Master">
+      <SubType>ASPXCodeBehind</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\InputBuilder\Views\InputBuilders\Boolean.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\InputBuilder\Views\InputBuilders\DateTime.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\InputBuilder\Views\InputBuilders\Enum.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\InputBuilder\Views\InputBuilders\Guid.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\InputBuilder\Views\InputBuilders\Int32.aspx">
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\InputBuilder\Views\InputBuilders\MultilineText.aspx">
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\InputBuilder\Views\InputBuilders\RadioButtons.aspx">
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\InputBuilder\Views\InputBuilders\ReadOnly.aspx">
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\InputBuilder\Views\InputBuilders\String.aspx">
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\InputBuilder\Views\InputBuilders\Submit.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\InputBuilder\Views\InputBuilders\Form.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\InputBuilder\Views\InputBuilders\DisplayInline.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\InputBuilder\Views\InputBuilders\DisplayLabel.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\InputBuilder\Views\InputBuilders\DisplayParagraph.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\InputBuilder\Views\InputBuilders\Array.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\InputBuilder\Views\InputBuilders\ArrayAddButton.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\InputBuilder\Views\InputBuilders\ArrayRemoveButton.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

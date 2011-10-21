@@ -1,0 +1,23 @@
+﻿@using MvcContrib.UI.Grid;
+@using MvcContrib.Samples.UI.Models;
+@using MvcContrib.UI.Pager;
+@using MvcContrib.Pagination;
+
+@model IPagination<Person>
+
+@{
+    ViewBag.Title = "Paged Grid";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <h2>@ViewBag.Title</h2>
+	
+@Html.Grid(Model).Columns(column => {
+     	column.For(x => x.Id).Named("Person ID");
+     	column.For(x => x.Name);
+     	column.For(x => x.Gender);
+     	column.For(x => x.DateOfBirth).Format("{0:d}");
+		column.For(x => Html.ActionLink("View Person", "Show", new { id = x.Id })).DoNotEncode();
+})
+
+@Html.Pager(Model)

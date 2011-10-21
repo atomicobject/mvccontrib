@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package>
+ <metadata>
+   <id>MvcContrib.Mvc3.WatiN-ci</id>
+   <version></version>
+   <authors>Outercurve Foundation</authors>
+   <requireLicenseAcceptance>false</requireLicenseAcceptance>
+   <description>MvcContrib was designed to add functionality and ease-of-use to Microsoft's ASP.NET MVC Framework, MVC Contrib is useful for developers looking to develop and test UI elements on top of the ASP.NET MVC framework.
+        The TestHelpers.WatiN library includes a series of helpers to streamline the use of WatiN for browser-based testing.</description>
+   <summary>MvcContrib was designed to add functionality and ease-of-use to Microsoft's ASP.NET MVC Framework, MVC Contrib is useful for developers looking to develop and test UI elements on top of the ASP.NET MVC framework.
+        The TestHelpers.WatiN library includes a series of helpers to streamline the use of WatiN for browser-based testing.</summary>
+   <language>en-US</language>
+   <dependencies>
+     <dependency id="MvcContrib.Mvc3.TestHelper-ci" />
+   </dependencies>
+ </metadata>
+</package>

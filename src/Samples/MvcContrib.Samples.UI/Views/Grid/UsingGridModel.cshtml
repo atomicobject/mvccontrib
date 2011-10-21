@@ -1,0 +1,12 @@
+﻿@using MvcContrib.UI.Grid;
+@using MvcContrib.Samples.UI.Models;
+@model IEnumerable<Person>
+
+@{
+    ViewBag.Title = "Using Grid Model";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@Html.Grid(Model).WithModel(new PeopleGridModel())

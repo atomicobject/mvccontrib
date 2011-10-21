@@ -1,0 +1,39 @@
+﻿@using MvcContrib.UI.Grid;
+@using MvcContrib.Samples.UI.Models;
+@using MvcContrib.UI.Pager;
+@using MvcContrib.Pagination;
+
+@model IPagination<Person>
+@{
+    ViewBag.Title = "Sorting and Paging";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+@section Head {
+	<style type="text/css">
+		.sort_desc 
+		{
+			background-image: url(<%= Url.Content("~/content/down.png") %>);
+			background-position: right;
+			background-repeat: no-repeat;
+			padding-right: 20px;
+		}
+		.sort_asc 
+		{
+			background-image: url(<%= Url.Content("~/content/up.png") %>);
+			background-position: right;
+			background-repeat: no-repeat;
+			padding-right: 20px;
+		}
+	</style>
+}
+
+@Html.Grid(Model).Sort(ViewData["sort"] as GridSortOptions).Columns(column => {
+    column.For(x => x.Id).Named("Person ID");
+    column.For(x => x.Name);
+    column.For(x => x.Gender);
+    column.For(x => x.DateOfBirth).Format("{0:d}");
+})
+     	
+@Html.Pager(Model)

@@ -1,0 +1,22 @@
+﻿@using MvcContrib.Samples.UI.Models;
+@using MvcContrib.UI.Grid;
+@model IEnumerable<Person>
+
+@{
+    ViewBag.Title = "Auto Generated Columns";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+	When you call <strong>AutoGenerateColumns()</strong> on the grid, the columns will be inferred based on the public properties of the model object.
+</p>
+	
+<p>
+	Additional columns can be added by calling <strong>Columns()</strong> after the call to AutoGenerateColumns.
+</p>
+@Html.Grid(Model).AutoGenerateColumns().Columns(column => {
+    column.For(x => Html.Partial("_ViewPerson", x));
+})
+
