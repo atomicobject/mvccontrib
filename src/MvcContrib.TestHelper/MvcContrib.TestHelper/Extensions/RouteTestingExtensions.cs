@@ -143,8 +143,10 @@ namespace MvcContrib.TestHelper
                 url = url.Insert(0, "http://www.google.com");
             }
 
-		    var parameters = HttpUtility.ParseQueryString(new System.Uri(url).Query);
+		    var uri = new System.Uri(url);
+		    var parameters = HttpUtility.ParseQueryString(uri.Query);
             request.ReturnFor(x => x.Params, parameters);
+            request.ReturnFor(x => x.Path, uri.AbsolutePath);
 
 		    var context = new FakeHttpContext(url);
 			context.SetRequest(request.Object);
